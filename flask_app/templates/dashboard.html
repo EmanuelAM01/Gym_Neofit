@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/dashboard.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="d-flex justify-content-between align-items-center" style="background-color: rgb(148, 42, 42); height: 120px;" id="box">
+        <img src="{{url_for ('static', filename = 'images/logo.png')}}" alt="Logo Neofit" id="imgone">
+        <h1>Welcome, {%if user.type_user == 0%}Athlete{%else%}Coach{%endif%} {{user.first_name}}!</h1>
+        <input type="search" id="search" placeholder="search routine or coach" style="border-radius: 20px; height: 30px; width: 250px; font-family: 'Quicksand', sans-serif;">
+        {%if user.type_user == 1%}
+        <a href="/addrutine" style="font-family: 'Quicksand', sans-serif;font-weight: 60px;font-size: large; font-weight: 500;">+ add a routine</a>
+        {%endif%}
+        <a href="/logout" class="btn btn-danger">Logout</a>
+    </header>
+    {%if rutines == None %}
+    <p style="font-family: 'Quicksand', sans-serif;font-weight: 60px;font-size: medium; margin-left: 700px;">Doesn't exist a routine</p>
+    {%else%}
+    <div style="display: inline-block; margin-left: 350px; margin-top: 20px; margin-bottom: 50px;">
+    {%for rutine in rutines%}
+    <div  class="principal">
+        <div style="display: flex;">
+            <div>
+                <p><b>Name of the routine:</b> {{rutine.name}}</p>
+                <p><b>Type of routine:</b> {%if rutine.type_rutine == 0 %}Weider{%elif rutine.type_rutine == 1 %}Fullbody{%elif rutine.type_rutine == 2 %}Push/Pull{%elif rutine.type_rutine == 3 %}Upper/Lower{%elif rutine.type_rutine == 4 %}Push/pull/legs{%endif%}</p>
+                <p><b>Time:</b> {%if rutine.time == 0 %}20 to 30 min{%endif%}{%if rutine.time == 1 %}30 to 45 min{%endif%}{%if rutine.time == 2 %}45 to 60 min{%endif%}{%if rutine.time == 3 %}60 to 90 min{%endif%}{%if rutine.time == 4 %}More than 90 min{%endif%}</p>
+                <p><b>likes:</b> {{rutine.num_likes}}</p>
+            </div>
+            <div style="margin-left: 150px;">
+                <p><b>Coach:</b> <br>{{rutine.first_name}} {{rutine.last_name}}</p>
+            </div>
+        </div>
+        <div>
+            {%if rutine.user_id == session['user_id']%}
+            <a class="iconos2" href="/delete/rutine/{{rutine.id}}" class="btn btn-primary"><img class="iconos" src="{{url_for ('static', filename = 'images/delete.png')}}" alt="Delete"></a>
+            <a class="iconos2"  href="/edit/rutine/{{rutine.id}}" class="btn btn-primary"><img class="iconos" src="{{url_for ('static', filename = 'images/edit.png')}}" alt="Edit"></a>
+            {%endif%}
+            <a class="iconos2"  href="/like/rutine/{{rutine.id}}/{{user.id}}"class="btn btn-primary"><img class="iconos" src="{{url_for ('static', filename = 'images/me_gusta.png')}}" alt="Like"></a>
+            <a class="iconos2" href="/see/rutine/{{rutine.id}}" class="btn btn-primary"><img class="iconos" src="{{url_for ('static', filename = 'images/see.png')}}" alt="See"></a>
+        </div>
+    </div>
+    {%endfor%}
+    </div>
+    {%endif%}
+</body>
+</html>

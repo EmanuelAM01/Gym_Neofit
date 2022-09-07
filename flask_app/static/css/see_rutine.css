@@ -1,0 +1,21 @@
+body{
+    background-image: url(/static/images/fondo_see_rutine.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    font-size: small;
+}
+label, input, p{
+    font-family: 'Quicksand', sans-serif;
+    font-size: medium;
+    color: black;
+}
+h1{
+    font-family: 'Quicksand', sans-serif;
+    color: black;
+    margin: 6px;
+    font-weight: 700px;
+
+}

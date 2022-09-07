@@ -1,0 +1,13 @@
+body{
+    background-image: url(/static/images/fondo_login_reg3.png);
+    background-attachment:scroll;
+    background-position:inherit;
+    background-repeat:no-repeat;
+    background-size: cover;
+    height: 1536px;
+}
+#imgone{
+    height: 200px;
+    width: 400px;
+    margin-top: 0px;
+}

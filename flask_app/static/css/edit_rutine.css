@@ -1,0 +1,28 @@
+body{
+    background-image: url(/static/images/fondo_edit_rutine.jpg);
+    background-attachment: fixed;
+    background-position:initial;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+.logo{
+    width: auto;
+    height: auto;
+}
+#edit{
+    opacity: 0.5;
+    border-radius: 3px;
+}
+label, input{
+    font-family: 'Quicksand', sans-serif;
+    font-size: medium;
+    color: black;
+}
+h1{
+    font-family: 'Quicksand', sans-serif;
+    color: black;
+    margin: 6px;
+    font-weight: 700px;
+
+}
